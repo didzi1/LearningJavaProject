@@ -1,5 +1,6 @@
 package learningjava;
 
+
 public class App {
     // main() is the central function of a Java program. This function
     // will run all of the code that you write to solve the problems
@@ -17,7 +18,7 @@ public class App {
         problem5();
         System.out.println("Problem 6");
         problem6();
-        System.out.println("Problem 7");
+         System.out.println("Problem 7"); 
         problem7();
         System.out.println("Problem 8");
         problem8();
@@ -27,7 +28,7 @@ public class App {
      * 1. Hello World Write a method that prints out "Hello World", and make it run.
      */
     static void problem1() {
-        // Fill in your answer here.
+        System.out.println("Hello world");
     }
 
     /*
@@ -35,7 +36,15 @@ public class App {
      * separate line.
      */
     static void problem2() {
-        // Fill in your answer here.
+
+        int number = 0;
+    
+        // The test in this while statement will be true as long as number is less than or equal to 100.
+        while (number < 10) {
+            number++;  // number++ is shorthand for number += 1, which is shorthand for number = number + 1
+            System.out.println(number);
+
+        }
 
     }
 
@@ -51,26 +60,32 @@ public class App {
      * 91 92 93 94 95 96 97 98 99 100
      */
     static void problem3() {
-        // Fill in your answer here.
 
+        for (int row = 0; row < 10; row++) {
+
+            for (int column = 1; column <= 10; column++) {
+                System.out.print(column + (10*row) + " ");
+            }
+            System.out.println();
+
+        }
     }
 
     /*
      * 4. Write a "power" method. This method computes x to the y power.
      */
     static int power(int x, int y) {
-        int result = 1; // Think about why you want to have 1 and not 0 to start
-
-        // Fill in your answer here.
-
-        return result;
+        double result = Math.pow(x, y);
+        return (int) result;
     }
 
     static void problem4() {
+
         System.out.println("2 to the 8th power is: " + power(2, 8));
         System.out.println("3 to the 4th power is: " + power(3, 4));
         System.out.println("5 to the 3rd power is: " + power(5, 3));
         System.out.println("2 to the 16th power is: " + power(2, 16));
+
     }
 
     /*
@@ -90,10 +105,15 @@ public class App {
      * ...
      */
     static void problem5() {
-	int x = 10;
-	int y = 5;
-        // Fill in your answer here.
 
+        for (int row = 1; row < 6; row++) {
+
+            for (int column = 1; column <= 10; column++) {
+                System.out.print(power(row, column) + " ");
+            }
+            System.out.println();
+        }
+        
     }
 
     /* 6. Booleans and if statements
@@ -113,8 +133,21 @@ public class App {
     static void problem6() {
 
         for (int i = 0; i<100; i++) {
-            // Fill in your answer here.
-            // Use if, else if, and else statements to decide what to print.
+
+            if (i % 2 == 0 && i % 3 == 0){
+                System.out.println("fizzbuzz"); // if divisable by both
+            }
+            else if(i % 2 == 0){
+                System.out.println("fizz"); // if divisable by 2
+            }
+            else if(i % 3 == 0){
+                System.out.println("buzz"); // if divisable by 3
+            }
+            
+            else {
+                System.out.println("nope"); // if divisable by neither
+
+            }
         }
     }
 
@@ -123,8 +156,12 @@ public class App {
         0 to a value n that is specified by the caller.
     */
     static int[] numbersUpToN(int n) {
-        int[] integers = new int[n+1]; // Can you see why we need n+1 elements?
+        int[] integers = new int[n+1]; // Can you see why we need n+1 elements?  You have to add one more for 0, it starts at 0
         
+        for (int integer = 0; integer <= n; integer++){
+            integers [integer] = integer;
+
+        }
         // Fill in the "integers" array with the correct values
         // Hint: Use a for loop.
             
@@ -133,6 +170,7 @@ public class App {
 
     static void problem7() {
         int[] upTo9 = numbersUpToN(9);
+        
         for (int number : upTo9) {
             System.out.println(""+number);
         }
@@ -142,43 +180,58 @@ public class App {
     /* 8. let's use arrays to solve a problem!
         Implement the Sieve of Eratosthenes
     */
-    static int[] findPrimesLessThanN(int n)
-    {
+    static int[] findPrimesLessThanN(int n){
 	// We're using possiblePrimes to keep track of which numbers we've
 	// eliminated as possibly being prime. This is like crossing them off a
 	// sheet of paper. Here, we're making use of the array index to indicate what
 	// the number is, so the only information about the number we have to store
 	// is whether or not we've crossed it off our list.
 
-    	boolean[] possiblePrimes = new boolean[n];
-	// First: set all the elements of possiblePrimes to true.
+        boolean[] possiblePrimes = new boolean[n];
 
-    	// Second: set possiblePrimes[0] and possiblePrimes[1] to false, since we know
-    	// by definition that 0 and 1 are not prime.
-	
-	// Third: Make a for loop. Have a variable currentPossible that starts at 2, and have the
-	// loop continue for as long as currentPossible < n, and increment by 1.
-	
-    	// Fourth: INSIDE the for loop mentioned above, make another for loop. This one should have
-    	// a variable currentMultiple that starts at (currentPossible + currentPossible), and continues
-    	// for as long as currentMultiple < n, and increment by currentPossible.
-	
-    	// Fifth, INSIDE this inner for loop, set possiblePrimes[currentMultiple] to false
-	
-	
-    	// Sixth: OK, this is outside of both for loops. Now you need to count how many elements in possiblePrimes
-    	// are true. This is going to be the number of elements to return as primes.
+        for (int integer = 0; integer < n; integer++){
+            possiblePrimes[integer] = true;
+
+        }
+        possiblePrimes[0] = false;
+        possiblePrimes[1] = false;
+
+        int currentnumberfalse = 2;
+
+
+
+        for (int currentPossible = 2; currentPossible < n; currentPossible++){
+
+            for (int currentMultiple = currentPossible + currentPossible; currentMultiple < n; currentMultiple += currentPossible ){    
+                
+                if (possiblePrimes[currentMultiple] == true){
+
+                possiblePrimes[currentMultiple] = false;
+                currentnumberfalse ++;
+                }
+            }            
+        }
+  
+        int currentnumbertrue = n - currentnumberfalse;
+
+        //System.out.println(currentnumberfalse + " currentnumberfalse");
+        //System.out.println(currentnumbertrue + " currentnumbertrue");
+
+        if (currentnumbertrue < 0){
+            currentnumbertrue = currentnumbertrue * -1;
+        }
         
-    	// Seventh: Create an array of ints big enough to fit all the primes
-        int[] primes = new int[0]; // Change 0 to the correct size
+        int[] primes = new int[currentnumbertrue]; 
 
-	// Eighth: Create a variable currentPrimeIndex = 0
+        int currentPrimeIndex = 0;
 
-    	// Ninth: Using a for loop with index i, go through the array of possiblePrimes. 
-    	// Every time you find a true value, set primes[currentPrimeIndex] = i.
-    	// Then increment currentPrimeIndex
-	
-        // Tenth: Return primes.
+        for(int i = 0; i < n; i++){
+
+            if (possiblePrimes[i] == true){
+                primes[currentPrimeIndex++] = i;
+            }
+        }
+
         return primes;
     }
 

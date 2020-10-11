@@ -7,21 +7,36 @@ import org.junit.jupiter.api.Test;
 // TODO for students: Implement this class so it passes the tests below.
 class Calculator {
 
+    private int outputValue = 0;
+
     public void add(int n) {
+
+        outputValue += n;
+        // =+ did not work bec it only added the took the number value of n, not added it with what wre had before
+
+        /*for (int i = 0; i < n; i++) {
+            outputValue++;
+        }  
+        This way worked, but was just way longer
+        */
+
 
     }
 
     public void subtract(int n) {
 
+        outputValue -= n;
     }
 
     public void multiply(int n) {
 
+        outputValue *= n; 
     }
 
     public int getValue() {
-        return 0;
+        return outputValue;
     }
+
 }
 
 /**

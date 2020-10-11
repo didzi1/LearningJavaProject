@@ -24,7 +24,8 @@ class StaticClickCounter {
 	}
 
 	public int getCount() {
-		return count;
+        return count;
+
 	}
 
 }
